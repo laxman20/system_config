@@ -1,0 +1,17 @@
+[Container]
+AddCapability=SYS_ADMIN
+AddDevice=/dev/fuse
+Exec=mount --allow-other --vfs-cache-mode writes --cache-dir /cache onedrive: /data/mount
+Group=1000
+Image=docker.io/rclone/rclone
+PodmanArgs=--privileged
+User=1000
+Volume=/home/laxmans/.config/rclone:/config/rclone
+Volume=/home/laxmans/.cache/rclone:/cache
+Volume=/home/laxmans/data/rclone:/data:shared
+Volume=/etc/passwd:/etc/passwd:ro
+Volume=/etc/group:/etc/group:ro
+Volume=/etc/fuse.conf:/etc/fuse.conf:ro
+
+[Install]
+WantedBy=default.target
